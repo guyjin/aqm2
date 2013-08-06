@@ -31,6 +31,7 @@
 
     var hideMenu = function() {
         $('body').removeClass('menu_locked').addClass('menu_hidden');
+        $(window).off('resize');
         $('nav.rNav').animate({
             left: '-190',
             backgroundColor: '#313131',
@@ -57,10 +58,11 @@
 
     var showMenu = function() {
         $('body').removeClass('menu_hidden').addClass('menu_open');
+
+        fixMenuHeight();
+
         if($('nav.rNav').css('backgroundColor') !== 'rgb(49,49,49)'){
-            var h = $('.frame').height();
-            var hh = $('header').height();
-            targeth = (h-hh);
+
             $('nav.rNav').css({'background-color':'rgb(49,49,49)'});
         }
         $('nav.rNav').animate({
@@ -68,8 +70,11 @@
             width: '190',
             queue: false
         }, 100, function() {
-
             menuOpen = true;
+            $(window).on('resize', function() {
+                console.log('resize');
+                fixMenuHeight();
+            })
         });
         $('.menu').fadeOut({queue:false},300);
         $('.cloze').fadeIn({queue: false},300);
@@ -93,10 +98,16 @@
         });
     }
 
+    var fixMenuHeight = function() {
+        var h = $(document).height();
+        var hh = $('header').height();
+        targeth = (h-hh);
+        $('nav.rNav').css({'height':targeth});
+    }
+
     var openSubNav = function(target) {
         var h = $('nav.rNav').height() + 55;
         var mh = target.next().height();
-        console.log(parseInt(target.next().offset().top));
         $('.section ul').each(function(){
             if($(this).is(":visible")) {
                 $(this).animate({
