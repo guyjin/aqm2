@@ -1,5 +1,5 @@
-nav {
-  background: white;
+.frame nav {
+  background: #fff;
   width: 160px;
   z-index: 2;
   padding-top: 15px;
@@ -7,28 +7,106 @@ nav {
   margin-right: 20px;
   margin-left: 0px;
 }
-nav .submenu {
-  display: none;
-}
-nav > ul {
+.frame nav > ul {
   margin: 0;
   padding: 0;
 }
-nav > ul > li {
+.frame nav > ul > li {
   list-style-type: none;
   text-align: right;
 }
-
-.frame nav a {
-  font-size: 14px;
-  color: #666666;
-  padding: 7px 5px 8px 0;
+.frame nav > ul > li a {
+  font-size: 13px;
+  color: #666;
+  padding: 7px 0px 8px 0;
   display: block;
-  text-decoration: non;
-}
-.frame nav a:hover {
-  cursor: pointer;
-  background-color: #666666;
-  color: white;
   text-decoration: none;
+}
+.frame nav > ul > li a:hover {
+  cursor: pointer;
+  background-color: #666;
+  color: #fff;
+  text-decoration: none;
+}
+.frame nav > ul > li a:after {
+  content: " \00A0";
+}
+.frame nav > ul > li a.menued:after {
+  content: " \f054";
+  font-family: 'fontawesome';
+  vertical-align: middle;
+  font-size: 7px;
+  margin-left: 3px;
+  color: orange;
+  margin-right: 5px;
+}
+.frame nav > ul > li a.menued:hover:before {
+  content: "\f054";
+  color: orange;
+  font-family: 'fontawesome';
+  display: inline-block;
+  font-size: 13px;
+  line-height: 1;
+  margin-left: 0;
+  margin-right: 2px;
+}
+.frame nav > ul > li a.menued:hover:after {
+  content: " ";
+}
+.frame nav > ul > li .submenu {
+  display: block;
+  position: absolute;
+  background: #666;
+  width: auto;
+  left: -999em;
+  text-align: left;
+  margin-top: -33px;
+  padding: 10px;
+}
+.frame nav > ul > li .submenu .section {
+  float: left;
+}
+.frame nav > ul > li .submenu .section h2 {
+  font-size: 14px;
+  font-weight: normal;
+  color: #fff;
+  padding-left: 10px;
+  margin-bottom: 5px;
+  margin-top: 0px;
+}
+.frame nav > ul > li .submenu .section h2:first-child {
+  margin-top: 0px;
+}
+.frame nav > ul > li .submenu .section ul {
+  padding-left: 10px;
+}
+.frame nav > ul > li .submenu .section ul li {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+.frame nav > ul > li .submenu .section ul li a {
+  color: #fff;
+  font-size: 12px;
+  padding: 4px 5px 3px 0;
+}
+.frame nav > ul > li.open a.menued {
+  background-color: #666;
+  color: #fff;
+}
+.frame nav > ul > li.open a.menued:before {
+  content: "\f054";
+  color: orange;
+  font-family: 'fontawesome';
+  display: inline-block;
+  font-size: 13px;
+  line-height: 1;
+  margin-left: 0;
+  margin-right: 2px;
+}
+.frame nav > ul > li.open a.menued:after {
+  content: " ";
+}
+.frame nav > ul > li.open .submenu {
+  left: 158px;
 }

@@ -40,6 +40,8 @@ $dept_bg: #4a6580;
 @include declare-font-face('open_sanslight','OpenSans-Light-webfont');
 @include declare-font-face('open_sansbold','OpenSans-Bold-webfont');
 @include declare-font-face('open_sansregular','OpenSans-Regular-webfont');
+@include declare-font-face('entypo','entypo');
+@include declare-font-face('fontawesome','fontawesome-webfont');
 
 html {
     font-size: 16px;
