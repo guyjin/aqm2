@@ -30,22 +30,25 @@
             openSubNav($(this));
         });
 
-        $('.wideNav>ul>li').hoverIntent(function(){
-            var fh = $('.frame').height(); // frame height
-            var fw = $('.frame').width(); // frame width
-            var mt = $(this).children('a').next().offset().top;  // menu top
-            var mh = $(this).children('a').next().height(); // menu height
-            var mw = $(this).children('a').next().width(); // menu height
-            var mb = mt + mh;  // bottom of menu
-            var sp = fh - mt; // space from the top of the menu to the bottom of the frame.
-            if(sp < mh) {
-                $(this).children('a').next().css({'bottom': 10 });
-            } else  {
-                $(this).children('a').next().css({'bottom': null});
+        $('.wideNav>ul>li').hoverIntent(
+            function(){
+                var fh = $('.frame').height() - 55; // frame height
+        // var fw = $('.frame').width(); // frame width
+                if ($(this).children('a').hasClass('menued')) {
+                    $(this).addClass('open');
+                    $(this).children('div.submenu').css({
+                        'height': fh,
+                        'position': 'absolute',
+                        'top': 55
+                    });
+                }
+            },
+            function() {
+                $(this).removeClass('open');
             }
-            if(mw > fw) {
+        );
 
-            }
+        $('a.twostage+.submenu .section h2').hover(function() {
             $(this).toggleClass('open');
         });
 
@@ -94,7 +97,6 @@
         }, 100, function() {
             menuOpen = true;
             $(window).on('resize', function() {
-                console.log('resize');
                 fixMenuHeight();
             });
         });
@@ -128,8 +130,6 @@
     };
 
     var openSubNav = function(target) {
-        var h = $('nav.rNav').height() + 55;
-        var mh = target.next().height();
         $('.section ul').each(function(){
             if($(this).is(':visible')) {
                 $(this).animate({
@@ -142,16 +142,6 @@
             left: 190,
             queue: false
         }, 100);
-    };
-
-    var openNav = function(target) {
-        console.log(target);
-        target.addClass('open');
-    };
-
-    var closeNav = function(target) {
-        console.log(target);
-        target.removeClass('open');
     };
 
 
