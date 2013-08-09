@@ -32,25 +32,30 @@
 
         $('.wideNav>ul>li').hoverIntent(
             function(){
-                var fh = $('.frame').height() - 55; // frame height
-        // var fw = $('.frame').width(); // frame width
+                var lih = $(this).offset().top;
                 if ($(this).children('a').hasClass('menued')) {
                     $(this).addClass('open');
                     $(this).children('div.submenu').css({
-                        'height': fh,
-                        'position': 'absolute',
-                        'top': 55
+                        'top': (lih - 30) + 'px'
                     });
                 }
             },
             function() {
                 $(this).removeClass('open');
+                destroySubNav();
             }
         );
 
-        $('a.twostage+.submenu .section h2').hover(function() {
-            $(this).toggleClass('open');
+        $('.wideNav .singlemenu').mouseover(function() {
+            destroySubNav();
+            $('.wideNav .section').removeClass('open');
+            displaySubNav($(this));
+            $(this).parent('.section').addClass('open');
         });
+
+        // $('.singlemenu').mouseout(function() {
+        //     $('.wideNav .section').removeClass('open');
+        // });
 
     };
 
@@ -143,6 +148,33 @@
             queue: false
         }, 100);
     };
+
+    var displaySubNav = function(box) {
+        destroySubNav();
+        box.append('<div class="submenubox"></div>');
+        var s = $('.submenubox');
+        var bo = box.offset();
+        var botop = bo.top;
+        var boleft = bo.left;
+        var submenuWidth = box.width();
+        var submenuLeft = box.offset().left;
+        var boxLeft = submenuWidth + submenuLeft;
+        box.children('ul').clone().appendTo(s);
+        s.css({
+            'left' : box.width() + 10 + 'px',
+            'top': 0,
+            'display': 'block'
+        });
+        $('.submenubox').on('mouseleave', function() {
+            console.log('out');
+        });
+    };
+
+    var destroySubNav = function() {
+        $('.submenubox').off('mouseleave').remove();
+    };
+
+
 
 
     var init = function() {
