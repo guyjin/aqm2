@@ -46,17 +46,12 @@
             }
         );
 
-        $('.wideNav .singlemenu').mouseover(function() {
-            destroySubNav();
-            $('.wideNav .section').removeClass('open');
-            displaySubNav($(this));
-            $(this).parent('.section').addClass('open');
-        });
-
-        // $('.singlemenu').mouseout(function() {
-        //     $('.wideNav .section').removeClass('open');
-        // });
-
+        $('.wideNav .singlemenu').hoverIntent(
+            function() {
+                displaySubNav($(this));
+            //$(this).parent('.section').addClass('open');
+            }
+        );
     };
 
     var hideMenu = function() {
@@ -161,8 +156,8 @@
         var boxLeft = submenuWidth + submenuLeft;
         box.children('ul').clone().appendTo(s);
         s.css({
-            'left' : box.width() + 10 + 'px',
-            'top': 0,
+            'left' : box.width() + 'px',
+            'top': '0',
             'display': 'block'
         });
         $('.submenubox').on('mouseleave', function() {
