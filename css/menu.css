@@ -46,6 +46,8 @@
   background: #666;
   left: -999em;
   text-align: left;
+  opacity: 0;
+  transition: opacity .25s ease-in-out;
 }
 .frame nav > ul > li .submenu .section h2 {
   font-size: 13px;
@@ -82,6 +84,7 @@
 }
 .frame nav > ul > li.open .submenu {
   left: 158px;
+  opacity: 1;
 }
 .frame nav > ul > li.open .submenu .section .singlemenu {
   position: relative;
@@ -104,9 +107,9 @@
   margin-right: 5px;
 }
 .frame nav > ul > li.open .submenu .section .singlemenu .submenubox {
-  display: none;
   background: #555;
   position: absolute;
+  display: none;
 }
 .frame nav > ul > li.open .submenu .section .singlemenu .submenubox ul {
   position: relative;

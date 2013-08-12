@@ -157,16 +157,12 @@
         box.children('ul').clone().appendTo(s);
         s.css({
             'left' : box.width() + 'px',
-            'top': '0',
-            'display': 'block'
-        });
-        $('.submenubox').on('mouseleave', function() {
-            console.log('out');
-        });
+            'top': '0'
+        }).fadeIn(250);
     };
 
     var destroySubNav = function() {
-        $('.submenubox').off('mouseleave').remove();
+        $('.submenubox').remove();
     };
 
 
