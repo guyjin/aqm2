@@ -14,6 +14,7 @@
 .frame nav > ul > li {
   list-style-type: none;
   text-align: right;
+  position: relative;
 }
 .frame nav > ul > li a {
   font-size: 13px;
@@ -47,7 +48,7 @@
   left: -999em;
   text-align: left;
   opacity: 0;
-  transition: opacity .25s ease-in-out;
+  transition: opacity 0.15s ease-in-out;
 }
 .frame nav > ul > li .submenu .section h2 {
   font-size: 13px;
@@ -58,6 +59,7 @@
   margin-bottom: 10px;
   margin-top: 0px;
   text-align: right;
+  white-space: nowrap;
 }
 .frame nav > ul > li .submenu .section h2:first-child {
   margin-top: 0px;
@@ -83,7 +85,8 @@
   color: #fff;
 }
 .frame nav > ul > li.open .submenu {
-  left: 158px;
+  left: 100%;
+  top: 0;
   opacity: 1;
 }
 .frame nav > ul > li.open .submenu .section .singlemenu {
@@ -92,6 +95,11 @@
 .frame nav > ul > li.open .submenu .section .singlemenu:hover {
   cursor: pointer;
   background-color: #555;
+}
+.frame nav > ul > li.open .submenu .section .singlemenu:hover ul {
+  opacity: 1;
+  top: 0;
+  left: 100%;
 }
 .frame nav > ul > li.open .submenu .section .singlemenu h2 {
   margin-bottom: 0;
@@ -106,25 +114,29 @@
   color: orange;
   margin-right: 5px;
 }
-.frame nav > ul > li.open .submenu .section .singlemenu .submenubox {
+.frame nav > ul > li.open .submenu .section .singlemenu ul {
+  opacity: 0;
+  transition: opacity 0.15s ease-in-out;
   background: #555;
   position: absolute;
+  padding-left: 0;
+}
+.frame nav > ul > li.open .submenu .section .singlemenu ul li {
+  padding: 0;
+  margin: 0;
+}
+.frame nav > ul > li.open .submenu .section .singlemenu ul li a {
+  white-space: nowrap;
+  padding: 8px 10px;
+}
+.frame nav > ul > li.open .submenu .section .singlemenu ul li a.singleton {
+  padding: 8px 7px 8px;
+}
+.frame nav > ul > li.open.onemenu .submenu .section .singlemenu h2 {
   display: none;
 }
-.frame nav > ul > li.open .submenu .section .singlemenu .submenubox ul {
-  position: relative;
-  left: 0;
-  padding: 0;
-  margin: 0;
-}
-.frame nav > ul > li.open .submenu .section .singlemenu .submenubox ul li {
-  padding: 0;
-  margin: 0;
-}
-.frame nav > ul > li.open .submenu .section .singlemenu .submenubox ul li a {
-  white-space: nowrap;
-  padding: 5px 7px;
-}
-.frame nav > ul > li.open .submenu .section .singlemenu .submenubox ul li a.singleton {
-  padding: 8px 7px 8px;
+.frame nav > ul > li.open.onemenu .submenu .section .singlemenu ul {
+  opacity: 1;
+  top: 0;
+  left: 100%;
 }

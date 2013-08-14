@@ -34,24 +34,37 @@
             function(){
                 var lih = $(this).offset().top;
                 if ($(this).children('a').hasClass('menued')) {
+
                     $(this).addClass('open');
-                    $(this).children('div.submenu').css({
-                        'top': (lih - 30) + 'px'
-                    });
+                    if($('.singlemenu', this).length === 1) {
+                        $(this).addClass('onemenu');
+                    }
                 }
             },
             function() {
                 $(this).removeClass('open');
-                destroySubNav();
             }
         );
 
-        $('.wideNav .singlemenu').hoverIntent(
+        $('.singlemenu').hover(
             function() {
-                displaySubNav($(this));
-            //$(this).parent('.section').addClass('open');
+                var mh = $(this).children('ul').height;
+                var mt = $(this).children('ul').offset().top;
+                var mb = mh + mt;
+                var wh = $('.frame').height();
+                if(mb > wh) {
+                    var t = ((mh+mt) - wh)*-1;
+                    $(this).next().css({
+                        'top': t + 'px'
+                    });
+                }
+            },
+            function() {
+
             }
         );
+
+
     };
 
     var hideMenu = function() {
@@ -143,30 +156,6 @@
             queue: false
         }, 100);
     };
-
-    var displaySubNav = function(box) {
-        destroySubNav();
-        box.append('<div class="submenubox"></div>');
-        var s = $('.submenubox');
-        var bo = box.offset();
-        var botop = bo.top;
-        var boleft = bo.left;
-        var submenuWidth = box.width();
-        var submenuLeft = box.offset().left;
-        var boxLeft = submenuWidth + submenuLeft;
-        box.children('ul').clone().appendTo(s);
-        s.css({
-            'left' : box.width() + 'px',
-            'top': '0'
-        }).fadeIn(250);
-    };
-
-    var destroySubNav = function() {
-        $('.submenubox').remove();
-    };
-
-
-
 
     var init = function() {
         menuStandUp();
