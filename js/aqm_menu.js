@@ -2,6 +2,9 @@
 
     var menuOpen = false;
     var inMenu = false;
+    var fh = ''; //global for content window height;
+
+
 
     var menuStandUp = function() {
         $('body').addClass('menu_locked');
@@ -21,6 +24,7 @@
                 eid = $(this).attr('id');
                 if(eid !== tid && $(this).is(':visible')){
                     $(this).next().slideUp(100);
+                    $('.singlemenu ul').css({'left':'-300px'});
                 }
             });
             $(this).next().slideToggle(100);
@@ -32,7 +36,7 @@
 
         $('.wideNav>ul>li').hoverIntent(
             function(){
-                var lih = $(this).offset().top;
+
                 if ($(this).children('a').hasClass('menued')) {
 
                     $(this).addClass('open');
@@ -46,21 +50,24 @@
             }
         );
 
-        $('.singlemenu').hover(
+
+
+        $('.singlemenu').hoverIntent(
             function() {
-                var mh = $(this).children('ul').height;
-                var mt = $(this).children('ul').offset().top;
-                var mb = mh + mt;
-                var wh = $('.frame').height();
-                if(mb > wh) {
-                    var t = ((mh+mt) - wh)*-1;
-                    $(this).next().css({
-                        'top': t + 'px'
-                    });
-                }
+                var menu = $(this).children('ul');
+                // var mh = $(this).children('ul').height;
+                // var mt = $(this).children('ul').offset().top;
+                // var mb = mh + mt;
+                // var wh = $('.frame').height();
+                // if(mb > wh) {
+                //     var t = ((mh+mt) - wh)*-1;
+                //     $(this).next().css({
+                //         'top': t + 'px'
+                //     });
+                // }
+                fixMenu(menu);
             },
             function() {
-
             }
         );
 
@@ -157,8 +164,38 @@
         }, 100);
     };
 
+    var watchWindow = function() {
+        $(window).on('resize', function() {
+            fixSubs();
+        });
+    };
+
+    var fixSubs = function() {
+        $('.submenu').each(function() {
+            fixMenu($(this));
+        });
+    };
+
+    var fixMenu = function (menu) {
+        fh = $('.frame').height(); // height of .frame;
+        var fo = $('.frame').offset().top; //.frame offset from top of document window;
+        var fb = fh + fo; // bottom of .frame
+        console.log(fb);
+        var h = menu.height(); // height of menu
+        var t = menu.offset().top; // menu offset from the top of the window;
+        //adding the offset and menu height tells us where the bottom of the menu is.
+        var th = h + t;
+        console.log(th);
+        if(th > fb) {
+            var diff = (th - fb);
+            menu.css({'top':'-' + diff + 'px'});
+        }
+    };
+
     var init = function() {
         menuStandUp();
+        watchWindow();
+        fixSubs();
     };
 
     $(init);

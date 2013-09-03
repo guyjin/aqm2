@@ -326,6 +326,9 @@ nav.rNav {
     background-color: #313131;
     z-index: 5;
   }
+  nav.rNav > ul {
+    padding-left: 0;
+  }
   nav.rNav > ul > li > a {
     color: #efefef;
     background-color: #313131;
@@ -333,9 +336,16 @@ nav.rNav {
     border-top: 1px solid #434343;
     display: block;
     padding: 5px 25px 5px 0px;
+    text-align: right;
   }
   nav.rNav > ul > li > a:hover {
     text-decoration: none;
+    background-color: #232323;
+    border-top: 1px solid #222;
+    border-bottom: 1px solid #222;
+  }
+  nav.rNav > ul > li .submenu {
+    display: none;
   }
   nav.rNav .aqmhome {
     border-top-color: #313131;
@@ -379,7 +389,8 @@ nav.rNav {
     color: #efefef;
     display: block;
     white-space: nowrap;
-    border-bottom: 1px solid #666;
+    border-bottom: 1px solid #222;
+    border-top: 1px solid #434343;
   }
 }
 

@@ -5,7 +5,7 @@
         vertical-align: middle;
         font-size: 7px;
         margin-left: 3px;
-        color: orange;
+        color: white;
         margin-right: 5px;
     }
 }
@@ -30,8 +30,9 @@ $menutransition: opacity .15s ease-in-out;
 
 .frame {
     nav {
-        background: #fff;
+        background: #333;
         width: 160px;
+        min-height: 485px;
         z-index: 2;
         padding-top: 15px;
         float: left;
@@ -46,8 +47,8 @@ $menutransition: opacity .15s ease-in-out;
                 position: relative;
                 a {
                     font-size: 13px;
-                    color: #666;
-                    padding: 7px 0px 8px 0;
+                    color: #ccc;
+                    padding: 7px 15px 8px 0;
                     display: block;
                     text-decoration: none;
                     &:hover {
@@ -61,6 +62,7 @@ $menutransition: opacity .15s ease-in-out;
                     }
                 }
                 a.menued {
+                    padding-right: 5px;
                     @include  arrowafter;
 
                 }
@@ -100,6 +102,10 @@ $menutransition: opacity .15s ease-in-out;
                                     color: #fff;
                                     font-size: 12px;
                                     padding: 4px 5px 3px 0;
+
+                                    &:hover {
+                                        background-color: #333;
+                                    }
                                 }
                             }
                         }

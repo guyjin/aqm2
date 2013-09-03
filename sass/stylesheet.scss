@@ -241,6 +241,7 @@ nav.rNav {
         background-color: $gray;
         z-index: 5;
         >ul {
+            padding-left: 0;
             >li {
                 >a {
                     color: #efefef;
@@ -249,9 +250,17 @@ nav.rNav {
                     border-top: 1px solid #434343;
                     display: block;
                     padding: 5px 25px 5px 0px;
+                    text-align: right;
                 }
                 >a:hover {
                     text-decoration: none;
+                    background-color: #232323;
+                    border-top: 1px solid #222;
+                    border-bottom: 1px solid #222;
+                }
+
+                .submenu {
+                    display: none;
                 }
             }
         }
@@ -296,7 +305,8 @@ nav.rNav {
                        color: #efefef;
                        display: block;
                        white-space: nowrap;
-                       border-bottom: 1px solid #666;
+                       border-bottom: 1px solid #222;
+                       border-top: 1px solid #434343;
                     }
                 }
             }
