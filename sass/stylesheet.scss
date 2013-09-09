@@ -317,7 +317,16 @@ nav.rNav {
 .content {
     background: #fff;
     margin-left: 160px;
-    padding: 2em;
+    padding: 0;
     min-height: 475px;
     @include breakpoint(small) {margin-left: 0;}
+
+    .bannerImg {
+        width: 100%;
+        display: inline-block;
+    }
+
+    p {
+        margin: 1em 2em;
+    }
 }

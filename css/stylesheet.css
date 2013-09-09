@@ -397,11 +397,18 @@ nav.rNav {
 .content {
   background: #fff;
   margin-left: 160px;
-  padding: 2em;
+  padding: 0;
   min-height: 475px;
 }
 @media screen and (max-width: 640px) {
   .content {
     margin-left: 0;
   }
+}
+.content .bannerImg {
+  width: 100%;
+  display: inline-block;
+}
+.content p {
+  margin: 1em 2em;
 }

@@ -1,0 +1,79 @@
+@mixin breakpoint($point) {
+    @if $point == medium {
+        @media screen and (max-width: 1190px) { @content; }
+    }
+    @else if $point == small {
+        @media screen and (max-width: 640px) { @content; }
+    }
+    @else if $point == tiny {
+        @media screen and (max-width: 480px) { @content; }
+    }
+}
+
+$gray: #313131;
+$header_bg: #709bc2;
+$dept_bg: #4a6580;
+
+.container {
+  position: relative;
+  z-index: 2;
+  margin-top: 1em;
+}
+
+.bg {
+    position: fixed;
+    z-index: 1;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    img {
+       position: absolute;
+       top: 0;
+       left: 0;
+       right: 0;
+       bottom: 0;
+       margin: auto;
+       min-width: 50%;
+       min-height: 50%;
+    }
+}
+
+.header {
+  background-color: $header_bg;
+  font-size: 2em;
+  line-height: 1.5;
+  color: #fff;
+
+  div.dept {
+    background: $dept_bg url(../img/shield.png) no-repeat 25px 10px;
+    padding: 6px 12px 6px 65px;
+    margin-top: 0;
+    height: 55px;
+    width: 160px;
+    @include breakpoint(small) {
+        width: 0;
+        height: 55px;
+        padding: 6px 0px 5px 54px;
+        background-position: 10px 10px;
+        background-color: #4a6580;
+    }
+    .deptLabel {
+        @include breakpoint(small) {display: none;}
+    }
+  }
+
+  div.branch {
+      font-size: 20px;
+      padding: 7px 0 0 25px;
+      @include breakpoint(small) {padding-left: 10px;}
+      @include breakpoint(tiny) {
+          font-style: 15px;
+          padding-top: 10px;
+      }
+  }
+}
+
+.content {
+
+}

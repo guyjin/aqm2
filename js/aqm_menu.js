@@ -167,6 +167,7 @@
     var watchWindow = function() {
         $(window).on('resize', function() {
             fixSubs();
+            setWideNavHeight();
         });
     };
 
@@ -176,16 +177,21 @@
         });
     };
 
+    var setWideNavHeight = function() {
+        var h = $('.frame').height();
+        var hh = $('header').height();
+        var targeth = (h-hh);
+        $('.wideNav').css({'height':targeth});
+    };
+
     var fixMenu = function (menu) {
         fh = $('.frame').height(); // height of .frame;
         var fo = $('.frame').offset().top; //.frame offset from top of document window;
         var fb = fh + fo; // bottom of .frame
-        console.log(fb);
         var h = menu.height(); // height of menu
         var t = menu.offset().top; // menu offset from the top of the window;
         //adding the offset and menu height tells us where the bottom of the menu is.
         var th = h + t;
-        console.log(th);
         if(th > fb) {
             var diff = (th - fb);
             menu.css({'top':'-' + diff + 'px'});
@@ -196,6 +202,7 @@
         menuStandUp();
         watchWindow();
         fixSubs();
+        setWideNavHeight();
     };
 
     $(init);
